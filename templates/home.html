@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Apna Picture</title>
+    <style>
+    
+        .bg{
+            background: #3f51b5!important;
+        }
+
+        .list-group-item.active{
+          background: #3f51b5!important;
+          border-color:  #3f51b5!important; ;
+        }
+    </style>
+  </head>
+  <body>
+    <div>
+      {%include 'navbar.html' %}
+    
+
+
+
+
+
+      <!-- main code -->
+      <div class="container">
+  
+  
+  
+      <div class="row">
+        <div class="col-md-2"> 
+          <!-- catogories -->
+          <div class="list-group mt-3">
+            <a href="/home" class="list-group-item list-group-item-action active">
+              All Images
+            </a>
+            {% for c in cats %}
+            <a href="/category/{{c.pk}}" class="list-group-item list-group-item-action">{{c.title}}</a>
+            
+  
+            {% endfor %}
+          </div>
+  
+        </div>
+  
+        <div class="col-md-10"> 
+          <!-- image -->
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="card-columns">
+                {% for i in images %}
+                <div class="card" >
+                  <img src="/media/{{i.image}}" class="card-img-top" alt="card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{i.title}}</h5>
+                    <p class="card-text">{{i.description}}</p>
+                    <a href="#" class="btn btn-primary" onclick="showModalwithImage('{{i.image}}')">View</a>
+                  </div>
+                </div>
+                
+          
+  
+         
+          
+          
+  
+  
+  
+                {% endfor %}
+                
+  
+  
+              </div>
+              
+  
+  
+            </div>
+  
+          </div>
+        
+  
+  
+        </div>
+  
+      </div>
+  
+    </div>
+    {%include 'footer.html' %}
+
+  </div>
+
+
+  
+    <!-- modal -->
+       <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal " id="image-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apna Picture</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text center">
+        <img src="" id="image-show" class="img-fluid" alt="">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script>
+    function showModalwithImage(imageUrl){
+      $('#image-Modal').modal('show')
+      $('#image-show').attr('src',`/media/${imageUrl}`)
+    }
+  </script>
+  
+  
+  
+  </body>
+</html>
